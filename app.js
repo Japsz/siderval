@@ -1,21 +1,19 @@
 var express = require('express');
 var path = require('path');
 var connect = require('connect');
-var connect = require('connect');
 var http = require('http');
 
 var app = express();
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var admin = require('./routes/admin');
 
-var connection  = require('express-myconnection');
-var mysql = require('mysql');
 
 
 
@@ -30,11 +28,20 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser("usuarios"));
+app.use(cookieParser("sesion2"));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieSession({
+    name: 'session',
+    keys: ['usuarios']
+}));
+app.use(cookieSession({
+    name: 'session2',
+    keys: ['session2']
+}));
 
-app.get('/', index);
-app.get('/users', users);
+app.use('/', index);
+app.use('/user', users);
 
 
 app.get('/admin_view', admin)
