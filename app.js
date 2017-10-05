@@ -12,9 +12,12 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var admin = require('./routes/admin');
 
 var connection  = require('express-myconnection');
 var mysql = require('mysql');
+
+
 
 
 // view engine setup
@@ -32,6 +35,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', index);
 app.get('/users', users);
+
+
+app.get('/admin_view', admin)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
