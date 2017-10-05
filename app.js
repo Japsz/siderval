@@ -44,7 +44,7 @@ app.use('/', index);
 app.use('/user', users);
 
 
-app.get('/admin_view', admin)
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
