@@ -13,7 +13,7 @@
                                 	<tr>
                                        <td><%=data[i].username%></td>
                                 	   <td><%=data[i].password%></td>
-                                	   <td><%=data[i].creacion%></td>
+                                	   <td><%=new Date(data[i].creacion).toLocaleString()%></td>
                                     </tr>
                                 <%}%>
                                 </tbody>
