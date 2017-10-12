@@ -17,7 +17,7 @@ router.use(
 
 /* GET users listing. */
 router.get('/admin_view', function(req, res, next) {
-	res.render('admin/admin_view', {page_title: "Administrador"});
+	res.render('admin/admin_view', {page_title: "Administrador", username: req.session.userData.nombre});
 });
 
 router.get('/render_admin', function(req, res, next) {
