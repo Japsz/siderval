@@ -44,7 +44,17 @@ router.post('/handler', function(req,res){
 
             if(rows.length == 1){
                 req.session.isUserLogged = true;
-                res.redirect('/');
+                req.session.userData = {
+                    nombre: rows[0].username,
+                    contrasena: rows[0].password,
+                    tipo: rows[0].tipo
+                };
+                if(rows[0].tipo == 1){
+                    res.redirect('/admin/admin_view');
+                }
+                else{
+                    res.redirect('/faena/faena_view');
+                }
             }
         });
 
@@ -77,6 +87,8 @@ router.post('/subir_pic', function (req,res) {
 
     });
 });
+
+
 
 
 module.exports = router;
