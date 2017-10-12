@@ -1,0 +1,33 @@
+<h1 class="page-header">Ficha de Lanzamiento de producto: </h1>
+<div class="form-group">
+ 	<label>Tipo de producto:</label>
+        <select id="tipo_producto" class="form-control">
+            <option value="P">Producto Terminado</option>
+            <option value="M">Materia Prima</option>
+            <option value="S">Semi-elaborado</option>
+            <option value="I">Insumos</option>
+            <option value="C">Chatarra</option>
+            <option value="O">Servicios y Otros</option>
+        </select>
+</div>
+
+<div style="padding-left: 93%"><button id="continuar" type="button" class="btn btn-default">Continuar</button></div>
+
+<div class="ficha"></div>
+
+
+<script type="text/javascript">
+    $("#continuar").on('click', function(e){
+        e.preventDefault();
+        var tipo_producto = $("#tipo_producto").val();
+        $.ajax({
+            type: 'POST',
+            data: {'tipo_producto': tipo_producto},
+            url: 'ficha_lanzamiento',
+            success: function(data){
+                $(".ficha").html(data);
+            }
+        });
+    });
+
+</script>

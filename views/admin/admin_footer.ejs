@@ -52,6 +52,15 @@
             }
         });
     });
-
+    $("#producto_lanzamiento").on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: 'render_ficha_lanzamiento',
+            success: function(data){
+                $("#page-wrapper").html(data);
+            }
+        });
+    });
 </script>
 </html>
