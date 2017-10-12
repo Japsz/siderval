@@ -1,7 +1,7 @@
 <h1 class="page-header">Ficha de Lanzamiento de producto: </h1>
 <div class="form-group">
  	<label>Tipo de producto:</label>
-        <select id="tipo_producto" class="form-control">
+        <select id="tipo_producto" class="form-control" onchange="mostrar()">
             <option value="P">Producto Terminado</option>
             <option value="M">Materia Prima</option>
             <option value="S">Semi-elaborado</option>
@@ -17,17 +17,19 @@
 
 
 <script type="text/javascript">
-    $("#continuar").on('click', function(e){
-        e.preventDefault();
-        var tipo_producto = $("#tipo_producto").val();
-        $.ajax({
-            type: 'POST',
-            data: {'tipo_producto': tipo_producto},
-            url: 'ficha_lanzamiento',
-            success: function(data){
-                $(".ficha").html(data);
-            }
+    function mostrar(){
+        $(function(){
+            var tipo_producto = $("#tipo_producto").val();
+            $.ajax({
+                type: 'POST',
+                data: {'tipo_producto': tipo_producto},
+                url: 'ficha_lanzamiento',
+                success: function(data){
+                    $(".ficha").html(data);
+                }
+            });
         });
-    });
+
+    }
 
 </script>
