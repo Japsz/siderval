@@ -50,11 +50,44 @@
 </head>
 
 <body>
-
+        <style type="text/css">
+            #franja_superior{
+                margin-bottom: 0; 
+                background-color: rgb(200, 200, 200);
+            }
+            #wrapper{
+                background-color: rgb(235,235,235);
+            }
+            #franja_superior .navbar-brand{
+                color: rgb(30,30,30);
+                font-family: 'Lobster';
+                font-size: 30px;
+            }
+            #franja_izquierda{
+                background-color: rgb(235,235,235);
+            }
+            #side-menu li{
+                cursor: pointer;
+            }
+            #side-menu li a{
+                text-align: left;
+                padding-top: 25px;
+                padding-bottom: 25px;
+                color: black;
+                font-size: 16px;
+            }
+            .page-header{
+                margin-top: 0px; 
+                padding-top: 30px;
+            }
+            #side-menu li a:hover{
+                color: rgb(50,50,50);
+                background-color: rgb(240,240,240);
+            }
+        </style>
     <div id="wrapper">
-
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav id="franja_superior" class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -67,28 +100,15 @@
             <ul class="nav navbar-top-links navbar-right">
                     <li>
                         <div style="padding: 10px; font-size: 17px; font-family: 'Lobster'; ">Bienvenido <%=username%></div>
+                    </li>
+                    <li>
+                        <div><a href="../user/log_out">Cerrar session</a></div>
                     </li>   
             </ul>
 
-            <div class="navbar-default sidebar" role="navigation">
+            <div class="navbar-default sidebar" role="navigation" id="franja_izquierda">
                 <div class="sidebar-nav navbar-collapse">
-                    <style type="text/css">
-                        #side-menu li{
-                            cursor: pointer;
-                        }
-                    </style>
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
                         <li>
                             <a id="cuentas"><i class="fa fa-dashboard fa-fw"></i> Cuentas</a>
                         </li>

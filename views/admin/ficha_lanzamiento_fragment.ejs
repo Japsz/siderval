@@ -11,12 +11,19 @@
         </select>
 </div>
 
-<div style="padding-left: 93%"><button id="continuar" type="button" class="btn btn-default">Continuar</button></div>
 
 <div class="ficha"></div>
 
 
 <script type="text/javascript">
+    $.ajax({
+                type: 'POST',
+                data: {'tipo_producto': "P"},
+                url: 'ficha_lanzamiento',
+                success: function(data){
+                    $(".ficha").html(data);
+                }
+            });
     function mostrar(){
         $(function(){
             var tipo_producto = $("#tipo_producto").val();

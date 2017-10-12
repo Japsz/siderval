@@ -56,39 +56,6 @@
         </div>
     </div>
 </div>
-<div class="input-group hidden" id="fail">
-    <input type="file" name="filetoupload" onchange="upload(this)">
-    <a class="input-group-btn btn btn-success">Sube una foto <i class="glyphicon glyphicon-upload"></i></a>
-</div>
-<script type="text/javascript">
-    function upload(e){
-
-        if (!e.files) {
-            alert("This browser doesn't seem to support the `files` property of file inputs.");
-        }
-        else if (!e.files[0]) {
-            alert("Porfavor seleccione algún archivo");
-        }
-        else {
-            var formData = new FormData();
-            formData.append("filetoupload", e.files[0]);
-            $(function (){
-                $.ajax({
-                    url: '/subir_pic',
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    type: 'POST',
-                    success: function(data){
-                        $("#path_input").val(data);
-                    }
-                })
-            });
-        }
-
-    }
-</script>
 <!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
 

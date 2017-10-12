@@ -17,7 +17,12 @@ router.use(
 
 /* GET users listing. */
 router.get('/admin_view', function(req, res, next) {
-	res.render('admin/admin_view', {page_title: "Administrador", username: req.session.userData.nombre});
+	if(req.session.userData){
+		res.render('admin/admin_view', {page_title: "Administrador", username: req.session.userData.nombre});
+	}
+	else{
+		res.redirect('/bad_login');
+	}
 });
 
 router.get('/render_admin', function(req, res, next) {
