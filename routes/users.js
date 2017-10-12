@@ -53,6 +53,31 @@ router.post('/handler', function(req,res){
 
 
 });
+// file ajax
+router.post('/subir_pic', function (req,res) {
+    var formidable = require('formidable');
+    var fs = require('fs');
+    var f_gen = new Date().toLocaleString();
+    f_gen = f_gen.replace(/\s/g,'');
+    f_gen = f_gen.replace(/\:/g,'');
+    f_gen = f_gen.replace(/\//g,'');
+    f_gen = f_gen.replace(/\,/g,'');
+    f_gen = f_gen + req.session.user.iduser.toString() + ".jpg";
+    console.log("fecha: " + f_gen);
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+        if(err) console.log("error file: %s",err);
+        var oldpath = files.filetoupload.path;
+        var newpath = '/home/proyecta/observa-portal/public/web-img/' + f_gen;
+        fs.rename(oldpath, newpath, function (err) {
+            if (err) throw err;
+            console.log('File uploaded and moved!');
+            res.send("/web-img/" + f_gen);
+        });
+
+    });
+});
+
 
 
 
