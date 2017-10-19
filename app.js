@@ -31,16 +31,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser("usuarios"));
-app.use(cookieParser("sesion2"));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieSession({
     name: 'session',
     keys: ['usuarios']
 }));
-app.use(cookieSession({
-    name: 'session2',
-    keys: ['session2']
-}));
+
 
 app.use('/', index);
 app.use('/user', users);
