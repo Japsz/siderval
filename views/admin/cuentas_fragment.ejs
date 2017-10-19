@@ -22,7 +22,18 @@
             <input type="file" name="filetoupload" onchange="upload(this)">
             <a class="btn btn-success">Subir <i class="glyphicon glyphicon-upload"></i></a>
         </div>
+
+        <div class="archive-list">
+            
+        </div>
         <script type="text/javascript">
+        $.ajax({
+            type: 'GET',
+            url: '/list_dir',
+            success: function(data){
+                $(".archive-list").html(data);
+            }
+        });
         function upload(e){
             if (!e.files) {
                 alert("This browser doesn't seem to support the `files` property of file inputs.");
@@ -42,7 +53,8 @@
                         processData: false,
                         type: 'POST',
                         success: function(data){
-                            $("#path_input").val(data);
+                            //$("#path_input").val(data);
+                            $(".archive-list").html(data);
                         }
                     })
                 });
