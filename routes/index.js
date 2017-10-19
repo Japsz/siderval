@@ -64,12 +64,7 @@ router.get('/list_dir', function(req, res){
 
 
 router.get('/pdf_file/:filename', function(req, res, next) {
-    var filename = req.params.filename;
-    console.log(filename);
-    var fs = require("fs");
-    var stream = fs.ReadStream("/home/daniel/Escritorio/siderval/public/archivos/"+filename+".pdf");
-    stream.pipe(res);
-
+        res.render('pdf/pdf');    
 });
 
 

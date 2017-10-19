@@ -13,7 +13,7 @@
 <div class="row" style="margin-top: 10px">
 	<div class="col-md-2" style="display: flex;">
 	<%for(var i=0; i<data.length; i++){%>
-			<div class="pdf_item" data-in="<%=i%>">
+			<div class="pdf_item" data-name="<%=data[i].nombre%>">
 				<img src="/assets/pdf_icon.png">
 				<h6><%=data[i].nombre%></h6>
 				<form id="form_<%=i%>" method="get" action="/pdf_file/<%=data[i].nombre%>" target="_blank"></form>
@@ -21,6 +21,7 @@
 	<%}%>
 	</div>
 </div>
+<div class="render_pdf"></div>
 
 	<script type="text/javascript">
 		var width = $('.pdf_item').width();
@@ -31,6 +32,12 @@
 		$(".pdf_item").on('click', function(e){
 			e.preventDefault();
 			var indice = $(this).data('in');
-			$("#form_"+indice).submit();
+			$.ajax({
+				type: 'GET',
+				url: '/pdf_file/'+$(this).data("name"),
+				success: function(data){
+					$(".render_pdf").html(data);
+				}
+			});
 		});
 	</script>
