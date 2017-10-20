@@ -54,25 +54,6 @@ router.get('/render_admin', function(req, res, next) {
 
 
 
-router.get('/render_informes', function(req, res, next){
-	res.render('admin/informes_fragment');
-});
-
-
-router.get('/render_ficha_lanzamiento', function(req, res, next){
-	res.render('admin/ficha_lanzamiento_fragment');
-});
-
-
-router.post('/ficha_lanzamiento', function(req, res, next){
-	var tipo = JSON.parse(JSON.stringify(req.body)).tipo_producto;
-	if(tipo=="P" || tipo=="S"){
-		res.render('admin/ficha_lanzamiento_producto');
-	}
-	else{
-		res.render('admin/ficha_lanzamiento_otros');
-	}
-});
 
 router.get('/render_tabla', function(req, res, next){
 	res.render('admin/tabla_ficha');

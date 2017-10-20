@@ -18,8 +18,7 @@ var plan = require('./routes/plan');
 var dt = require('./routes/dt');
 var dm = require('./routes/dm');
 
-
-
+const ejslint = require('ejs-lint');
 
 
 
@@ -42,6 +41,8 @@ app.use(cookieSession({
 
 app.use('/', index);
 app.use('/user', users);
+
+app.use('/plan', plan);
 app.use('/gerencia', admin);
 app.use('/faena', faena);
 app.use('/dt', dt);
@@ -62,7 +63,7 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+    // render the error page
   res.status(err.status || 500);
   res.render('error');
 });

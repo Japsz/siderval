@@ -23,44 +23,35 @@
 
 </body>
 <script type="text/javascript">
-    $.ajax({
-        type: 'GET',
-        url: 'render_admin',
-        success: function(data){
-            $("#page-wrapper").html(data);
-        }
-    });
 
-    $("#cuentas").on('click', function(e){
+    $("#construir").on('click', function(e){
         e.preventDefault();
         $.ajax({
             type: 'GET',
-            url: 'render_registro_material',
+            url: '/plan/construir',
             success: function(data){
                 $("#page-wrapper").html(data);
             }
         });
     });
 
-    $("#informes").on('click', function(e){
+    $(".material_lanzamiento").on('click', function(e){
         e.preventDefault();
+        var data = {tipo: $(this).data('tipo')};
         $.ajax({
-            type: 'GET',
-            url: 'render_informes',
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            url: '/plan/registro_mat',
             success: function(data){
                 $("#page-wrapper").html(data);
             }
         });
     });
-    $("#material_lanzamiento").on('click', function(e){
-        e.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: 'render_ficha_lanzamiento',
-            success: function(data){
-                $("#page-wrapper").html(data);
-            }
-        });
+    $(document).ajaxError(function myErrorHandler(event, xhr, ajaxOptions, thrownError) {
+        alert("There was an ajax error!");
+        console.log(xhr.responseText);
+        console.log(xhr);
     });
 </script>
 </html>
