@@ -50,10 +50,10 @@ router.post('/handler', function(req,res){
                     tipo: rows[0].tipo
                 };
                 if(rows[0].tipo == 1){
-                    res.redirect('/' + rows[0].username);
+                    res.redirect('/'+rows[0].username);
                 }
                 else{
-                    res.redirect('/faena/faena_view');
+                    res.redirect('/'+rows[0].username);
                 }
             }
         });

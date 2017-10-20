@@ -15,6 +15,8 @@ var users = require('./routes/users');
 var admin = require('./routes/admin');
 var faena = require('./routes/faena');
 var plan = require('./routes/plan');
+var dt = require('./routes/dt');
+var dm = require('./routes/dm');
 
 const ejslint = require('ejs-lint');
 
@@ -40,10 +42,13 @@ app.use(cookieSession({
 app.use('/', index);
 app.use('/user', users);
 
-
-app.use('/gerencia', admin);
 app.use('/plan', plan);
+app.use('/gerencia', admin);
 app.use('/faena', faena);
+app.use('/dt', dt);
+app.use('/plan', plan);
+app.use('/dm', dm);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
