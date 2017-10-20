@@ -95,7 +95,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Siderval</a>
+                <a class="navbar-brand" href="/">Siderval</a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                     <li>
@@ -108,14 +108,33 @@
 
             <div class="navbar-default sidebar" role="navigation" id="franja_izquierda">
                 <div class="sidebar-nav navbar-collapse">
+                    <style type="text/css">
+                        .nav-second-level li{
+                            height: 60px;
+                        }
+                    </style>
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a id="cuentas"><i class="fa fa-dashboard fa-fw"></i> Cuentas</a>
+                            <a href="#"><i class="fa fa-cube"></i> Registrar Material</a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a class="material_lanzamiento" data-tipo="prod"><i class="glyphicon glyphicon-piggy-bank"></i> Producto</a>
+                                </li>
+                                <li>
+                                    <a class="material_lanzamiento" data-tipo="recur"><i class="fa fa-diamond"></i> Recurso</a>
+                                </li>
+                                <li>
+                                    <a class="material_lanzamiento" data-tipo="otro"><i class="fa fa-cogs"></i> Otro</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a id="construir"><i class="fa fa-gears fa-fw"></i> Construir Productos</a>
                         </li>
                         <li>
                             <a id="informes"><i class="fa fa-folder-o fa-fw"></i> Informes</a>
                         </li>
-
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

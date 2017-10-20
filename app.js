@@ -14,9 +14,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var admin = require('./routes/admin');
 var faena = require('./routes/faena');
+var plan = require('./routes/plan');
 
-
-
+const ejslint = require('ejs-lint');
 
 
 
@@ -41,7 +41,8 @@ app.use('/', index);
 app.use('/user', users);
 
 
-app.use('/admin', admin);
+app.use('/gerencia', admin);
+app.use('/plan', plan);
 app.use('/faena', faena);
 
 // catch 404 and forward to error handler
@@ -57,7 +58,7 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+    // render the error page
   res.status(err.status || 500);
   res.render('error');
 });

@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `siderval`.`user` (
   `password` VARCHAR(45) NOT NULL,
   `creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tipo` INT NOT NULL DEFAULT 2,
-  PRIMARY KEY (`iduser`));
+      PRIMARY KEY (`iduser`));
 
 
 -- -----------------------------------------------------
