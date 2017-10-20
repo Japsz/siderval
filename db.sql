@@ -20,14 +20,28 @@ USE `siderval` ;
 -- -----------------------------------------------------
 -- Table `siderval`.`user`
 -- -----------------------------------------------------
+
+ DELIMITER $$
+
+ CREATE TRIGGER SetCreacionNow
+ BEFORE INSERT ON `user`
+ FOR EACH ROW
+ BEGIN
+    IF NEW.`creacion` IS NULL THEN
+       SET NEW.`creacion` = NOW();
+    END IF;
+ END$$
+
+ 
+
+
 CREATE TABLE IF NOT EXISTS `siderval`.`user` (
   `iduser` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creacion` DATETIME NULL,
   `tipo` INT NOT NULL DEFAULT 2,
   PRIMARY KEY (`iduser`));
-
 
 -- -----------------------------------------------------
 -- Table `siderval`.`material`
@@ -35,14 +49,16 @@ CREATE TABLE IF NOT EXISTS `siderval`.`user` (
 CREATE TABLE IF NOT EXISTS `siderval`.`material` (
   `idmaterial` INT NOT NULL AUTO_INCREMENT,
   `u_medida` VARCHAR(10) NULL,
-  `f_aprov` VARCHAR(20) NULL,
+  `f_aprov` VARCHAR(1) NULL,
   `leadtime` INT NULL,
   `precio` INT NULL,
   `abc` VARCHAR(1) NULL,
-  `tipo` INT NOT NULL,
+  `tipo` VARCHAR(5) NOT NULL DEFAULT 'otro',
   `especificacion` INT NULL,
   `caracteristica` INT NULL,
   `idproducto` INT NULL,
+  `estado` VARCHAR(5) NULL,
+  `descripcion` VARCHAR(200) NULL,
   PRIMARY KEY (`idmaterial`))
 ENGINE = InnoDB;
 
@@ -123,9 +139,19 @@ CREATE TABLE IF NOT EXISTS `siderval`.`Bom` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+
+CREATE TABLE IF NOT EXISTS `siderval`.`EtapaFaena` (
+  `id_etapa` INT(2) NOT NULL AUTO_INCREMENT,
+  `nombre_etapa` VARCHAR(40) NOT NULL,
+  PRIMARY KEY (`id_etapa`)
+  )ENGINE = InnoDB;
+
+
+
 CREATE USER 'user' IDENTIFIED BY '1234';
 
-GRANT SELECT ON TABLE `siderval`.* TO 'user';
+GRANT SELECT ON TABLE `sidervuseral`.* TO 'user';
 CREATE USER 'admin' IDENTIFIED BY '1234';
 
 GRANT ALL ON `siderval`.* TO 'admin';

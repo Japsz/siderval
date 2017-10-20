@@ -16,8 +16,8 @@ router.use(
 );
 
 /* GET users listing. */
-router.get('/faena_view', function(req, res, next) {
-	res.render('faena/faena_view', {page_title: "Administrador", username: req.session.userData.nombre});
+router.get('/', function(req, res, next) {
+	res.render('faena/indx', {page_title: "Faena", username: req.session.userData.nombre});
 });
 
 

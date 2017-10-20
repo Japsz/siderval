@@ -8,7 +8,7 @@ router.use(
     connection(mysql,{
 
         host: '127.0.0.1',
-        user: 'user',
+        user: 'admin',
         password : '1234',
         port : 3306,
         database:'siderval'
@@ -20,5 +20,13 @@ router.use(
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.render('/plan/indx.ejs');
+    res.render('plan/indx', {page_title: "Planificacion", username: req.session.userData.nombre});
 });
+
+router.get('/render_registro_material', function(req, res, next) {
+		/*SE RENDERIZA LA VISTA DONDE INGRESAMOS MATERIAL*/
+		res.render('plan/registro_fragment', {data: rows});
+});
+
+
+module.exports = router;
