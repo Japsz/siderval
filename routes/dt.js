@@ -41,6 +41,57 @@ router.get('/render_registro',function(req, res, next){
 });
 
 
+
+
+router.get('/updateMaterial/:idmaterial', function(req,res,next){
+	var input = req.params;
+	req.getConnection(function(err, connection){
+		//UPDATE `siderval`.`material` SET `estado`='fin' WHERE `idmaterial`='2';
+		connection.query("UPDATE material SET estado = 'bom' WHERE idmaterial='"+input.idmaterial+"'", function(err, rows){
+			if(err){
+				console.log("Error Selecting : %s", err);
+				res.send('error');
+			}
+			else{
+				res.redirect("/dt/render_material");
+			}
+		});
+	});
+});
+
+
+router.get('/render_material', function(req, res, next){
+	req.getConnection(function(err, connection){
+		connection.query("SELECT idmaterial,detalle FROM material WHERE estado = 'pdf'", function(err, rows){
+			if(err){
+				console.log("Error Selecting : %s", err);
+			}
+			else{
+				res.render("dt/render_material", {data: rows});
+			}
+		});
+	});
+
+});
+
+
+/*router.get('/rejectMaterial/:idmaterial', function(req,res,next){
+	var input = req.params;
+	req.getConnection(function(err, connection){
+		//UPDATE `siderval`.`material` SET `estado`='fin' WHERE `idmaterial`='2';
+		connection.query("UPDATE material SET estado = 'plan' WHERE idmaterial='"+input.idmaterial+"'", function(err, rows){
+			if(err){
+				console.log("Error Selecting : %s", err);
+				res.send('error');
+			}
+			else{
+				res.redirect("/dm/render_material");
+			}
+		});
+	});
+});*/
+
+
 /*router.post('/find_proccess', function(req, res, next){
 	var input = JSON.parse(JSON.stringify(req.body));
 	req.getConnection(function(err, connection){

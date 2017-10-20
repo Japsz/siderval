@@ -17,6 +17,7 @@
 			  <div class="gridProccess">
 			  	
 			  </div>-->
+        <input type="hidden" id="idmaterial">
                 <style type="text/css">
                     .etapas_list:hover{
                         cursor: pointer;
@@ -101,14 +102,16 @@
        </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="reiniciar()">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="send(this)">Enviar</button>
+          <!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="reiniciar()">Close</button>-->
+          <button type="button" class="btn btn-primary send-to-bom" data-dismiss="modal" onclick="send(this)">Enviar</button>
         </div>
 
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-<div style="padding: 20px">
+<div class="pendientes" style="padding: 20px">
+
+
 	<div class="list-group">
     	<%for(var i=0; i< data.length; i++){%>
  		<div class="list-group-item" style="display: flex;">
@@ -116,10 +119,13 @@
  		 		<label for="detalle">Descripcion:</label>
  		 		<p id="detalle"><%=data[i].detalle%></p>
  		 	</div>
- 		 	<button type="button" class="btn btn-primary button-slider" data-name="<%=data[i].detalle%>" data-toggle="modal" data-target="#material-modal"><span class="glyphicon glyphicon-check"></span>Enviar a Planificacion</button>
+ 		 	<button type="button" class="btn btn-primary button-slider" data-id="<%=data[i].idmaterial%>" data-name="<%=data[i].detalle%>" data-toggle="modal" data-target="#material-modal"><span class="glyphicon glyphicon-check"></span>Enviar a Planificacion</button>
  		</div>
  		<%}%>
 	</div>
+
+
+
 </div>
 
 <style type="text/css">
@@ -190,10 +196,22 @@
 
         $(".button-slider").on('click', function(e){
           e.preventDefault();
-          //$(".modal-title").html("Enviar material: "+$(this).data('name'));
+          $(".modal-title").html("Enviar material: "+$(this).data('name').toString().substring(10)+"...");
+          $("#idmaterial").val($(this).data('id'));
     
-        }) 
+        }); 
 
+        $(".send-to-bom").on('click', function(e){
+          e.preventDefault();
+          $.ajax({
+            type: 'GET',
+            url: 'dt/updateMaterial/'+$("#idmaterial").val(),
+            success: function(data){
+              alert("Producto aprobado correctamente.");
+              $(".pendientes").html(data);
+            }
+          });   
+        });
 
 	/*$("#ruta").on('keyup', function(e){
 			e.preventDefault();

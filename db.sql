@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `siderval`.`EtapaFaena` (
 
 CREATE USER 'user' IDENTIFIED BY '1234';
 
-GRANT SELECT ON TABLE `sidervuseral`.* TO 'user';
+GRANT SELECT ON TABLE `siderval`.* TO 'user';
 CREATE USER 'admin' IDENTIFIED BY '1234';
 
 GRANT ALL ON `siderval`.* TO 'admin';
