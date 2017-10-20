@@ -15,25 +15,28 @@ router.get('/bad_login', function(req, res, next){
 
 // file ajax
 router.post('/subir_pic', function (req,res) {
-	console.log("gG");
     var formidable = require('formidable');
     var fs = require('fs');
     var f_gen = new Date();
     f_gen = f_gen.getHours()+":"+f_gen.getMinutes()+":"+f_gen.getSeconds()+"_"+f_gen.getDate()+"-"+(f_gen.getMonth()+1)+"-"+f_gen.getFullYear()+"_";
     f_gen = f_gen + req.session.userData.nombre + ".pdf";
-    console.log("fecha: " + f_gen);
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files){
         if(err) console.log("error file: %s",err);
+        //fields.filetouploas = 'C:/fakepath/ejercicios.pdf'
+        console.log(fields);
         var oldpath = files.filetoupload.path;
-
+        //oldpath = "home/daniel/Escritorio/latex/ejercicios/ejercicios.pdf";
+        console.log(oldpath);
         //APU TIENES QUE CAMBIAR LAS RUTAS MADAFUCKER
         //pd: deja la mia como comentario xD
         var newpath = '/home/daniel/Escritorio/siderval/public/archivos/' + f_gen;
         fs.rename(oldpath, newpath, function (err) {
-            if (err) throw err;
-            console.log('File uploaded and moved!');
-            res.redirect("/list_dir");
+            if (err) {res.send("error");}
+            else{
+                console.log('File uploaded and moved!');
+                res.send('ok');
+            }
         });
     });
 });
