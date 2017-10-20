@@ -116,7 +116,7 @@
  		 		<label for="detalle">Descripcion:</label>
  		 		<p id="detalle"><%=data[i].detalle%></p>
  		 	</div>
- 		 	<button type="button" class="btn btn-primary button-slider" data-toggle="modal" data-target="#material-modal"><span class="glyphicon glyphicon-check"></span>Enviar a Planificacion</button>
+ 		 	<button type="button" class="btn btn-primary button-slider" data-name="<%=data[i].detalle%>" data-toggle="modal" data-target="#material-modal"><span class="glyphicon glyphicon-check"></span>Enviar a Planificacion</button>
  		</div>
  		<%}%>
 	</div>
@@ -185,7 +185,14 @@
                         }
                     })
                 });       
-	}
+	       }
+
+
+        $(".button-slider").on('click', function(e){
+          e.preventDefault();
+          //$(".modal-title").html("Enviar material: "+$(this).data('name'));
+    
+        }) 
 
 
 	/*$("#ruta").on('keyup', function(e){
