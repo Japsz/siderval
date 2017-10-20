@@ -41,7 +41,7 @@ router.get('/render_registro',function(req, res, next){
 });
 
 
-router.post('/find_proccess', function(req, res, next){
+/*router.post('/find_proccess', function(req, res, next){
 	var input = JSON.parse(JSON.stringify(req.body));
 	req.getConnection(function(err, connection){
 		connection.query('SELECT * FROM EtapaFaena WHERE nombre_etapa LIKE "'+'%' + input.proccess + '%"', function(err, rows){
@@ -53,6 +53,6 @@ router.post('/find_proccess', function(req, res, next){
 		});
 	});
 });
-
+*/
 
 module.exports = router;
